@@ -1,0 +1,57 @@
+{
+  "name": "account-abstraction-zk",
+  "description": "Account Abstraction contracts on zkSync",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tivelprotocol/account-abstraction-zk"
+  },
+  "keywords": [
+    "tivel",
+    "zksync",
+    "ethereum"
+  ],
+  "license": "AGPL-3.0-or-later",
+  "devDependencies": {
+    "@matterlabs/hardhat-zksync-chai-matchers": "^0.1.0",
+    "@matterlabs/hardhat-zksync-deploy": "^0.6.2",
+    "@matterlabs/hardhat-zksync-toolbox": "^0.1.0",
+    "@matterlabs/hardhat-zksync-verify": "^0.1.2",
+    "@matterlabs/hardhat-zksync-vyper": "^0.1.7",
+    "@nomicfoundation/hardhat-chai-matchers": "^2.0.6",
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@nomiclabs/hardhat-etherscan": "^3.1.6",
+    "@nomiclabs/hardhat-solhint": "^2.0.1",
+    "@nomiclabs/hardhat-waffle": "^2.0.3",
+    "@types/chai": "^4.3.1",
+    "@types/mocha": "^9.1.1",
+    "chai": "^4.3.6",
+    "ethereum-waffle": "^3.4.4",
+    "ethereumjs-util": "^7.1.4",
+    "ethers": "^5.6.1",
+    "hardhat": "^2.12.7",
+    "hardhat-gas-reporter": "^1.0.9",
+    "mocha": "^10.0.0",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.2",
+    "zksync-web3": "^0.14.3"
+  },
+  "scripts": {
+    "build": "yarn hardhat compile",
+    "build-zk": "yarn hardhat compile --network zkSyncTestnet",
+    "mainnet:deploy": "yarn hardhat deploy-zksync --script mainnet/deploy.ts --network zkSyncMainnet",
+    "mainnet:test": "yarn hardhat deploy-zksync --script mainnet/test.ts --network zkSyncMainnet",
+    "compile": "yarn hardhat compile",
+    "test": "yarn hardhat test"
+  },
+  "dependencies": {
+    "@chainlink/contracts": "^0.6.1",
+    "@matterlabs/hardhat-zksync-solc": "^1.1.4",
+    "@matterlabs/zksync-contracts": "^0.6.1",
+    "@openzeppelin/contracts": "^4.9.3",
+    "@openzeppelin/contracts-upgradeable": "^4.9.3",
+    "dotenv": "^16.0.3",
+    "ethers-decode-error": "^1.0.0",
+    "hardhat-deploy": "^0.11.25"
+  }
+}
