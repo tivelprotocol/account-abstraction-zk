@@ -14,6 +14,11 @@
           "internalType": "uint256",
           "name": "_requiredEth",
           "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_user",
+          "type": "address"
         }
       ],
       "name": "requiredAmount",

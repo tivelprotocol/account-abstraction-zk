@@ -11,7 +11,7 @@ import {Errors} from "./libraries/Errors.sol";
 
 import "./interfaces/IPaymasterConfig.sol";
 
-contract ERC20Paymaster is IPaymaster {
+contract Paymaster is IPaymaster {
     // Using OpenZeppelin's SafeERC20 library to perform token transfers
     using SafeERC20 for IERC20;
 
@@ -19,6 +19,7 @@ contract ERC20Paymaster is IPaymaster {
     IPaymasterConfig public config;
 
     event SetManager(address manager);
+    event SetConfig(address config);
     event RefundedToken(
         address indexed account,
         address indexed token,
@@ -83,7 +84,7 @@ contract ERC20Paymaster is IPaymaster {
         uint256 requiredETH = _transaction.gasLimit * _transaction.maxFeePerGas;
 
         (uint256 requiredAmount, uint256 sponsoredRate) = _config
-            .requiredAmount(token, requiredETH);
+            .requiredAmount(token, requiredETH, userAddress);
 
         // Flow if the user is required pay with a given token
         if (requiredAmount > 0) {
@@ -133,6 +134,20 @@ contract ERC20Paymaster is IPaymaster {
             IERC20(token).safeTransfer(userAddress, refundAmount);
             emit RefundedToken(userAddress, token, refundAmount);
         }
+    }
+
+    function setManager(address _newManager) external onlyManager {
+        if (msg.sender == address(0)) revert Errors.ZeroAddress();
+        manager = _newManager;
+
+        emit SetManager(_newManager);
+    }
+
+    function setConfig(address _newConfig) external onlyManager {
+        if (_newConfig == address(0)) revert Errors.ZeroAddress();
+        config = IPaymasterConfig(_newConfig);
+
+        emit SetConfig(_newConfig);
     }
 
     function withdrawETH(address _to, uint256 _amount) external onlyManager {

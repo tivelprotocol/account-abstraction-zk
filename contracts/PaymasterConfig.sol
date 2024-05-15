@@ -70,7 +70,8 @@ contract PaymasterConfig is IPaymasterConfig {
 
     function requiredAmount(
         address _gasToken,
-        uint256 _requiredEth
+        uint256 _requiredEth,
+        address /* _user */
     ) external view override returns (uint256, uint256) {
         uint256 amount = quoter.quote(_gasToken, _requiredEth);
         uint256 _sponsoredRate = sponsoredRate[_gasToken];

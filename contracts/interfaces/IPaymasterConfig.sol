@@ -8,6 +8,7 @@ interface IPaymasterConfig {
 
     function requiredAmount(
         address _gasToken,
-        uint256 _requiredEth
+        uint256 _requiredEth,
+        address _user
     ) external view returns (uint256, uint256);
 }

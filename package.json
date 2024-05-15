@@ -40,6 +40,9 @@
     "build": "yarn hardhat compile",
     "build-zk": "yarn hardhat compile --network zkSyncTestnet",
     "mainnet:deploy": "yarn hardhat deploy-zksync --script mainnet/deploy.ts --network zkSyncMainnet",
+    "mainnet:manage-quoter": "yarn hardhat deploy-zksync --script mainnet/manage-quoter.ts --network zkSyncMainnet",
+    "mainnet:manage-config": "yarn hardhat deploy-zksync --script mainnet/manage-config.ts --network zkSyncMainnet",
+    "mainnet:manage-paymaster": "yarn hardhat deploy-zksync --script mainnet/manage-paymaster.ts --network zkSyncMainnet",
     "mainnet:test": "yarn hardhat deploy-zksync --script mainnet/test.ts --network zkSyncMainnet",
     "compile": "yarn hardhat compile",
     "test": "yarn hardhat test"
