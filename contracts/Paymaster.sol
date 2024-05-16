@@ -130,7 +130,9 @@ contract Paymaster is IPaymaster {
             uint256 usedGasAfterSponsored = usedGas -
                 (usedGas * sponsoredRate) /
                 10000;
-            uint256 refundAmount = requiredAmount - usedGasAfterSponsored;
+            uint256 refundAmount = (requiredAmount *
+                (_transaction.gasLimit - usedGasAfterSponsored)) /
+                _transaction.gasLimit;
             IERC20(token).safeTransfer(userAddress, refundAmount);
             emit RefundedToken(userAddress, token, refundAmount);
         }
